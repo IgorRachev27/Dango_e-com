@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<section id="form"><!--form-->
+		<div class="container">
+			<div class="col-sm-4 col-sm-offset-1">
+                <div class="signup-form"><!--login form-->
+						<h2>Войти в аккаунт</h2>
+						<form method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                            <label>{{ field.label_tag }}</label>
+                            {{ field.error }}
+                            <p>{{ field }}</p>
+                            {% endfor %}
+                        <a href="{% url 'password_reset' %}">Забыли пароль?</a><br>
+                        <button class="btn btn-default" type="submit">Войти</button>
+                        <a href="{% url 'signup' %}">Зарегистрироваться&nbsp;&rarr;</a>
+                        </form>
+                </div>
+            </div>
+        </div>
+</section>
+
+{% endblock %}
