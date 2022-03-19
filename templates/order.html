@@ -18,7 +18,7 @@
 							<td class="price">Цена</td>
 							<td class="quantity">Количество</td>
 							<td class="total">Общая сумма</td>
-							<td></td>
+							<td>Дата заказа</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -44,7 +44,7 @@
 							</td>
 							<td class="cart_delete">
 								<!--<a href="{ url 'cart_add' prod.id %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
-							-->
+							--><p>{{ i.date }}</p>
 							</td>
 						</tr>
                     {% endfor %}

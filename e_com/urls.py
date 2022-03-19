@@ -27,12 +27,15 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('contact_us', views.Contact_Page, name='contact_page'),
     path('product/', views.Product_page, name='product'),
+    path('product/<str:id>', views.Product_detail, name='product_detail'),
 ]
 
 urlpatterns += [
     path('', include('user_cart.urls')),]
 urlpatterns += [
     path('', include('order.urls')),]
+urlpatterns += [
+    path('', include('search.urls')),]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

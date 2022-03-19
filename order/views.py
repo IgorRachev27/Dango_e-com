@@ -36,7 +36,7 @@ def CheckOut(request):
 def YourOrder(request):
     uid = request.session.get('_auth_user_id')
     user = User.objects.get(pk=uid)
-    order = Order.objects.filter(user=user)
+    order = Order.objects.filter(user=user).order_by('-date')
 
     context={
         'order':order,

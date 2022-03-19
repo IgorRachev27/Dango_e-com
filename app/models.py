@@ -32,6 +32,8 @@ class Brand(models.Model):
 
 
 class Product(models.Model):
+    Availability = (('В наличии','В наличии'),('Нет наличии','Нет в наличии'))
+
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория', null=False, default='')
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, verbose_name='Подкатегория', null=False,
                                      default='')
@@ -39,7 +41,9 @@ class Product(models.Model):
     image = models.ImageField(upload_to='media/product', verbose_name='Изображение товара')
     name = models.CharField(max_length=100, verbose_name='Название товара')
     price = models.IntegerField( verbose_name='Цена')
+    Availability = models.CharField(choices=Availability, null=True, max_length=100, verbose_name='Наличие товара')
     date = models.DateField(auto_now_add=True, verbose_name='Дата')
+
 
     def __str__(self):
         return self.name
@@ -47,6 +51,10 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+
+    @staticmethod
+    def get_products_by_id(ids):
+        return Product.objects.filter(id__in=ids)
 
 
 class Contact_us(models.Model):

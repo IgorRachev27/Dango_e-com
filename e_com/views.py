@@ -93,3 +93,23 @@ def Product_page(request):
         'summ':summ,
     }
     return render(request, 'product.html', context)
+
+def Product_detail(request, id):
+    product = Product.objects.filter(id=id).first()
+    category = Category.objects.all()
+    brand = Brand.objects.all()
+    brandID = request.GET.get('brand')
+    categoryID = request.GET.get('category')
+    summ = {}
+    for br in brand:
+        l = len(Product.objects.filter(brand=br))
+        summ[br] = l
+
+    context = {
+        'product':product,
+        'category': category,
+        'product': product,
+        'brand': brand,
+        'summ': summ,
+    }
+    return render(request, 'product_detail.html', context)
